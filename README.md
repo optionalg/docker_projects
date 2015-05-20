@@ -1,2 +1,4 @@
-# docker_compose_projects
+Docker Compose Projects
+===
+
 Some template files for Docker compose
