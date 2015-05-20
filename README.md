@@ -1,4 +1,4 @@
-Docker Compose Projects
+Docker Projects
 ===
 
-Some template files for Docker compose
+Some Docker project files, Dockerfile, Compose templates, etc.
