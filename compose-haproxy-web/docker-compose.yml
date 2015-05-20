@@ -1,0 +1,36 @@
+# This compose project will boot 3 web containers as the backend of 1 standard haproxy container. The web container (depends on the python:2.7 image) will run a python application to return webpage indicating the visitor ip and the true destination ip. The haproxy container will listen on local port 80 for web access and 70 for status checking.
+#
+# Run: docker-compose up
+# Required Docker images: haproxy:latest and python:2.7
+
+
+weba:
+    build: ./web
+    expose:
+        - 80
+
+webb:
+    build: ./web
+    expose:
+        - 80
+
+webc:
+    build: ./web
+    expose:
+        - 80
+
+haproxy:
+    image: haproxy:latest
+    volumes:
+        - haproxy:/haproxy-override
+        - haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    links:
+        - weba
+        - webb
+        - webc
+    ports:
+        - "80:80"
+        - "70:70"
+    expose:
+        - "80"
+        - "70"
